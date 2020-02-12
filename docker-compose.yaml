@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "uy38if74bw"
+      MYSQL_DATABASE: "aseuadmin"
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/renatogroffe/Desenvolvimento/Docker/Volumes/MySql:/var/lib/mysql
+    networks:
+      - mysql-compose-network
+
+  tomcat:
+    image: fabric8/tomcat-7
+    volumes:
+      - ./aseuAdminWeb.war:/opt/apache-tomcat-7.0.90/webapps/aseuAdminWeb.war
+    ports:
+      - "8080:8080"
+
+networks:
+  mysql-compose-network:
+    driver: bridge
