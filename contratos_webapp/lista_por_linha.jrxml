@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c240cc1e-94a1-4d16-91fb-e0d4950c5125">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_linha" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ( SELECT transporte_info2.`ida` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'SEG' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado` ) as seg_ida,
+     ( SELECT transporte_info2.`volta` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'SEG' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado` ) as seg_volta,
+     ( SELECT transporte_info2.`ida` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'TER' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as ter_ida,
+     ( SELECT transporte_info2.`volta` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'TER' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as ter_volta,
+     ( SELECT transporte_info2.`ida` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'QUA' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as qua_ida,
+     ( SELECT transporte_info2.`volta` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'QUA' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as qua_volta,
+     ( SELECT transporte_info2.`ida` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'QUI' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as qui_ida,
+     ( SELECT transporte_info2.`volta` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'QUI' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as qui_volta,
+     ( SELECT transporte_info2.`ida` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'SEX' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as sex_ida,
+     ( SELECT transporte_info2.`volta` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'SEX' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as sex_volta,
+     ( SELECT transporte_info2.`ida` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'SAB' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as sab_ida,
+     ( SELECT transporte_info2.`volta` FROM `associado` associado2 INNER JOIN `transporte_info` transporte_info2 ON associado2.`id_associado` = transporte_info2.`associado_id_associado` INNER JOIN `linha` linha2 ON transporte_info2.`linha_id_linha` = linha2.`id_linha` WHERE transporte_info2.`dia` = 'SAB' and associado2.`id_associado` = associado.`id_associado` AND transporte_info2.`linha_id_linha` = transporte_info.`linha_id_linha` GROUP BY associado2.`id_associado`) as sab_volta,
+     associado.`id_associado` AS associado_id_associado,
+     associado.`nome` AS associado_nome,
+     transporte_info.`id_transporte_info` AS transporte_info_id_transporte_info,
+     linha.`id_linha` AS linha_id_linha,
+     linha.`itinerario` AS linha_itinerario
+FROM
+     `associado` associado INNER JOIN `transporte_info` transporte_info ON associado.`id_associado` = transporte_info.`associado_id_associado`
+     INNER JOIN `linha` linha ON transporte_info.`linha_id_linha` = linha.`id_linha`
+WHERE
+     linha_id_linha = $P{id_linha}
+GROUP BY
+     ASSOCIADO_id_associado]]>
+	</queryString>
+	<field name="seg_ida" class="java.lang.Boolean"/>
+	<field name="seg_volta" class="java.lang.Boolean"/>
+	<field name="ter_ida" class="java.lang.Boolean"/>
+	<field name="ter_volta" class="java.lang.Boolean"/>
+	<field name="qua_ida" class="java.lang.Boolean"/>
+	<field name="qua_volta" class="java.lang.Boolean"/>
+	<field name="qui_ida" class="java.lang.Boolean"/>
+	<field name="qui_volta" class="java.lang.Boolean"/>
+	<field name="sex_ida" class="java.lang.Boolean"/>
+	<field name="sex_volta" class="java.lang.Boolean"/>
+	<field name="sab_ida" class="java.lang.Boolean"/>
+	<field name="sab_volta" class="java.lang.Boolean"/>
+	<field name="associado_id_associado" class="java.lang.Integer"/>
+	<field name="associado_nome" class="java.lang.String"/>
+	<field name="transporte_info_id_transporte_info" class="java.lang.Integer"/>
+	<field name="linha_id_linha" class="java.lang.Integer"/>
+	<field name="linha_itinerario" class="java.lang.String"/>
+	<variable name="sum_seg_ida" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{seg_ida} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_seg_volta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{seg_volta} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_ter_ida" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{ter_ida} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_ter_volta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{ter_volta} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_qua_ida" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qua_ida} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_qua_volta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qua_volta} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_qui_ida" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qui_ida} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_qui_volta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qui_volta} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_sex_ida" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sex_ida} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_sex_volta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sex_volta} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_sab_ida" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sab_ida} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="sum_sab_volta" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sab_volta} == Boolean.TRUE ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="7b95fce5-3052-4c98-bde6-8f4b7a9c8575" x="0" y="0" width="555" height="47"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="96cd2907-b06b-41e0-9b4e-8400d672d233" x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Transporte Semanal por Linha]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3eb51f47-1132-4df5-9b44-007cf8ede59a" x="0" y="20" width="555" height="27"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linha_itinerario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d889af76-31d3-4fd9-a70b-468144029b16" x="0" y="20" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3629bef5-f23d-4a8d-978c-d98f8a2bb1ac" x="159" y="0" width="66" height="20"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1162cdcb-b285-4c9e-9148-d6f52dc89ba7" x="159" y="20" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48b34044-bbbb-4b54-8911-73f0a335f0d2" x="190" y="20" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VOLTA]]></text>
+			</staticText>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="6cb1397f-ce7b-4d9c-8044-2244489280a8" x="225" y="0" width="66" height="20"/>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TER]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ec9e0be2-b7cc-4f40-bea3-44826aff154a" x="256" y="20" width="35" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[VOLTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d79f18c2-7756-414f-ae50-2f1d327988bf" x="225" y="20" width="31" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[IDA]]></text>
+				</staticText>
+			</elementGroup>
+			<staticText>
+				<reportElement uuid="9fca893f-039b-42bc-b5dc-a2056e5b4351" x="291" y="0" width="66" height="20"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2e30235e-acd4-4687-bdce-49f1b92db509" x="291" y="20" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f97b06b6-8f92-4a5f-9e0a-92f67576296f" x="322" y="20" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VOLTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed5f2728-703c-4024-8746-26155b8ea15c" x="388" y="20" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VOLTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dceb6a14-d6ac-49cf-b04c-aa9a86099d9b" x="357" y="20" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5cf6305b-1808-4d16-92ea-30a614675614" x="357" y="0" width="66" height="20"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bd8a1bef-1f61-461b-aca9-2e5805a24525" x="423" y="20" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ce57c2ca-f1fb-4fc4-b82c-eb87939e6da0" x="454" y="20" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VOLTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1a220932-f41a-4b71-a618-c380a2c5c599" x="423" y="0" width="66" height="20"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ce89947f-bae7-4efb-9295-6288e5ad7d13" x="489" y="0" width="66" height="20"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SAB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="01b2933e-4744-4bce-a7f9-5a301461eb9c" x="520" y="20" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VOLTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bbda6ea6-4705-47fc-8992-e9b220c6b527" x="489" y="20" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="46e4a0f9-7058-4f28-8816-a25966061349" x="0" y="0" width="159" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{associado_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="11934efb-be4e-4feb-b010-35329127e989" x="291" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{qua_ida} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5cfa6b21-a0dd-4fd4-86e7-1c1d9ba7914f" x="322" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{qua_volta} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3d0aefee-4cde-4f0b-aa11-6d493a06f30d" x="159" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{seg_ida} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="86cb3900-5597-490a-95ef-7da75576a89f" x="190" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{seg_volta} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1ff9a9c1-9cc4-420b-9b5d-3158bb0d78f7" x="256" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ter_volta} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ddd1d871-25f5-40af-b864-1b52408ac6fc" x="225" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ter_ida} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3fe14a7a-8192-4f89-90f8-92ac64f5eff5" x="357" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{qui_ida} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="df74cb01-01e7-4fa0-be9f-fb14714ffe4c" x="388" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{qui_volta} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4be853e3-e3c1-4f79-9fc9-34d8e4cdc3bb" x="423" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sex_ida} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b8fa83d0-d5aa-43b3-8128-1cb618f617c3" x="454" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sex_volta} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7dc72ac5-8bf5-4193-9eb1-8b0195b2d8ea" x="489" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sab_ida} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f2259110-c8ab-41b6-bea0-f9b69932cba9" x="520" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sab_volta} == Boolean.TRUE ? "X" : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="dc48d13c-7171-4afb-bf5e-5e047b6b3cd2" mode="Opaque" x="0" y="0" width="159" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAIS]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7946570d-91be-4cb9-b225-7db1154e65f2" mode="Opaque" x="159" y="0" width="31" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_seg_ida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5ccaa64a-782f-402d-b135-21d13a47b60e" mode="Opaque" x="190" y="0" width="35" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_seg_volta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0cbe77aa-5b5e-48c0-99e3-e91ef072745c" mode="Opaque" x="225" y="0" width="31" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_ter_ida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c764484b-0f7c-4a92-8371-ed478fb35e54" mode="Opaque" x="256" y="0" width="35" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_ter_volta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c6d3bad2-c85f-4ecb-a586-194b7b1c235e" mode="Opaque" x="291" y="0" width="31" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_qua_ida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2d1fc871-46d7-4740-8009-3c78b16608bf" mode="Opaque" x="322" y="0" width="35" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_qua_volta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="821e2f77-52d9-4215-8360-2bfadaba746f" mode="Opaque" x="357" y="0" width="31" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_qui_ida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a732026-3b26-453c-aaff-90df4a3cc28d" mode="Opaque" x="388" y="0" width="35" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_qui_volta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="618d1799-d070-41cd-a502-f32610a6e349" mode="Opaque" x="423" y="0" width="31" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_sex_ida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1119bf0a-aace-4ae7-b793-8c285a56362e" mode="Opaque" x="454" y="0" width="35" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_sex_volta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="97b740e7-b147-4e6a-95a7-e544114a030f" mode="Opaque" x="489" y="0" width="31" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_sab_ida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8e171977-fed1-464e-b2b7-e933b51a7aa0" mode="Opaque" x="520" y="0" width="35" height="20" backcolor="#FFFFCC"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{sum_sab_volta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

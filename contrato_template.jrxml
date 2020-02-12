@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contrato_template" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b5181b12-84e8-488a-82dc-bfcc45f31d5d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="506"/>
+	<queryString>
+		<![CDATA[SELECT
+     associado.`id_associado` AS associado_id_associado,
+     associado.`cpf` AS associado_cpf,
+     associado.`curso` AS associado_curso,
+     associado.`email` AS associado_email,
+     associado.`endereco` AS associado_endereco,
+     associado.`nome` AS associado_nome,
+     associado.`recadastro` AS associado_recadastro,
+     associado.`rg` AS associado_rg,
+     associado.`telefone` AS associado_telefone,
+     associado.`instituicao_id_instituicao` AS associado_instituicao_id_instituicao,
+     associado.`localTitEleitor_id_cidade` AS associado_localTitEleitor_id_cidade,
+     associado.`cidade` AS associado_cidade,
+     associado.`profissao` AS associado_profissao,
+     associado.`estado_civil` AS associado_estado_civil,
+     cidade.`id_cidade` AS cidade_id_cidade,
+     cidade.`nome` AS cidade_nome,
+     cidade.`estado_id_estado` AS cidade_estado_id_estado,
+     estado.`id_estado` AS estado_id_estado,
+     estado.`nome` AS estado_nome,
+     estado.`uf` AS estado_uf
+FROM
+     `cidade` cidade INNER JOIN `associado` associado ON cidade.`id_cidade` = associado.`localTitEleitor_id_cidade`
+     INNER JOIN `estado` estado ON cidade.`estado_id_estado` = estado.`id_estado`
+WHERE
+     id_associado = ###ASSOCIADO_ID###]]>
+	</queryString>
+	<field name="associado_id_associado" class="java.lang.Integer"/>
+	<field name="associado_cpf" class="java.lang.String"/>
+	<field name="associado_curso" class="java.lang.String"/>
+	<field name="associado_email" class="java.lang.String"/>
+	<field name="associado_endereco" class="java.lang.String"/>
+	<field name="associado_nome" class="java.lang.String"/>
+	<field name="associado_recadastro" class="java.lang.Boolean"/>
+	<field name="associado_rg" class="java.lang.String"/>
+	<field name="associado_telefone" class="java.lang.String"/>
+	<field name="associado_instituicao_id_instituicao" class="java.lang.Integer"/>
+	<field name="associado_localTitEleitor_id_cidade" class="java.lang.Integer"/>
+	<field name="associado_cidade" class="java.lang.Integer"/>
+	<field name="associado_profissao" class="java.lang.String"/>
+	<field name="associado_estado_civil" class="java.lang.String"/>
+	<field name="cidade_id_cidade" class="java.lang.Integer"/>
+	<field name="cidade_nome" class="java.lang.String"/>
+	<field name="cidade_estado_id_estado" class="java.lang.Integer"/>
+	<field name="estado_id_estado" class="java.lang.Integer"/>
+	<field name="estado_nome" class="java.lang.String"/>
+	<field name="estado_uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a853978f-8a26-4e42-a185-7f92d835657a" x="0" y="0" width="555" height="23"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATO DE PRESTAÇÃO DE SERVIÇOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="569" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c30f9c5d-9f26-4262-b3ad-787e975d78b7" x="0" y="0" width="555" height="569"/>
+				<textElement markup="styled">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pelo presente instrumento particular de "+"<style isBold=\"true\">"+"CONTRATO DE PRESTAÇÃO DE SERVIÇOS"+": </style>"+ ",\natravés do CNPJ nº 89.337.000/0001-95, localizada na cidade de Sarandi - RS, neste ato representada por seu Presidente Sr. João Henrique Pemp Menegon, brasileiro, solteiro, estudante, portador do CPF nº 008.625.100-74 e do RG nº 8104353027, doravante denominado " +"<style isBold=\"true\">"+"CONTRATADO"+": </style>"+ " e, de outro lado o (a) Sr.(a )"+"<style isBold=\"true\">" +$F{associado_nome}+", " +$F{associado_profissao}+", " +$F{associado_estado_civil}+", portador(a) do CPF: "+$F{associado_cpf}+", RG: "+$F{associado_rg}+", Residente na Rua: "+$F{associado_endereco}+"," +$F{cidade_nome}+"-"+$F{estado_uf}+": </style>" +", doravante denominado (a) CONTRATANTE, estabelecem as partes, de comum acordo, as seguintes disposições:"+"<style isBold=\"true\">"+"\nCláusula Primeira"+": </style>"+": o objeto do presente Contrato é a prestação de serviços do (a) Contratado (a) à Contratante, visando prestar transporte universitário até sua universidade/faculdade."+"<style isBold=\"true\">"+"\nCláusula Segunda"+": </style>"+": o presente Contrato vigorará pelo período de 1(um) semestre, iniciando em 22/02/2016 e findando-se de acordo com o calendário acadêmico da instituição de ensino do (a) contratante, podendo ser renovado por igual período, mediante assinatura de novo contrato, se houver interesse das partes.\nParágrafo Único. Para efeito de interpretação deste instrumento, considerar-se-á como semestre o calendário letivo das universidades."+"<style isBold=\"true\">"+"\nCláusula Terceira"+": </style>"+": O valor de remuneração mensal ficará estipulado de acordo com a próxima assembleia que será convocada, onde o valor acertado é determinado conforme os dias que será utilizado o transporte e destino do (a) contratante, a data para pagamento pelo (a) Contratante, via boleto bancário, fica acordado até o 10º dia do mês corrente ao da prestação do serviço.\n§ 1º As parcelas mensais poderão ser reajustadas conforme a necessidade da contratada, sendo que este aumento não poderá ultrapassar o limite de 10% por alteração.\nParágrafo único. Incidirão multa de 2% e mora diária de 0,20% sobre as parcelas não pagas na data definida nesta cláusula.\nParágrafo único. A Contratada poderá usufruir de todos os meios legais para a cobrança da remuneração mensal, conforme Art. 23, item 10, do Estatuto Social da Contratada.\nO associado ao assinar o contrato estará de posse de todos boletos referente a mensalidade do semestre em vigor no contrato."+"<style isBold=\"true\">"+"\nClausula Quarta"+": </style>"+": A parcela mensal está sujeita a protesto em cartório após cinco dias do vencimento."+"<style isBold=\"true\">"+"\nClausula Quinta"+": </style>"+": Havendo recessos, greves ou mesmo que o (a) universitário (a) falte, a parcela deverá ser paga normalmente."+"<style isBold=\"true\">"+"\nCláusula Sexta"+": </style>"+ ": o Contratante propiciará todas as condições para o bom transporte do a) Contratado(a)."+"<style isBold=\"true\">"+"\nCláusula Sétima"+": </style>"+": o presente Contrato poderá ser rescindido por qualquer das partes, desde que haja a comunicação formal no prazo mínimo de 30 (trinta) dias, anteriores ao distrato.\nParágrafo Único. Caso existam pendências do (a) Contratado (a) com a Contratante, as mesmas deverão ser regularizadas antes da rescisão do contrato.\nCláusula Oitava: as partes elegem o Foro da Comarca de Sarandi – RS para dirimir eventuais litígios acerca do contrato, podendo ser resolvidos, também, por meio de procedimento arbitral. E por estarem justos e contratados, subscrevem o presente em três vias de igual teor e forma, na presença de duas testemunhas.\n Sarandi – RS, "+ new SimpleDateFormat("dd MMMMM yyyy").format( new java.util.Date())  + "."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="193" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3f9debfb-abf7-4383-a790-f23a07169808" x="0" y="0" width="555" height="192"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[
+______________________________________________________________
+
+______________________________________________________________
+Representante Legal (Contratante)
+Testemunhas:
+1)
+_______________________________________________________________
+2)
+_______________________________________________________________
+
+]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
